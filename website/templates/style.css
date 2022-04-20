@@ -1,0 +1,13 @@
+.color {
+    background-color: cornflowerblue;
+}
+.text {
+    color: #D0C3F1;
+}
+a {
+    text-decoration: none;
+}
+.leftbar{
+    position: sticky;
+    bottom: 65%;
+}
