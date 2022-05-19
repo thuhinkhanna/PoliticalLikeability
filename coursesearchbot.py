@@ -19,11 +19,11 @@ leaders = [
         'Abraham Lincoln', 'Nelson Mandela', 'A.P.J. Abdul Kalam', 'Kofi Annan', 'Aung San Suu Kyi', 'Atal Bihari Vajpayee', 'Jawaharlal Nehru', 'Robert Mugabe', 'Ashraf Ghani'
         ]
 #for leader in leaders :
-for i in range(41,50,1):
+for i in range(50):
     leader = leaders[i]
-    document = {}
+    leader_document = {}
     results = reddit.subreddit("all").search(leader)
-    document["title"] = leader
+    leader_document["name"] = leader
     # Result has a set of post ids
     posts=[]
     for post_id in results:
@@ -32,20 +32,23 @@ for i in range(41,50,1):
     if(len(posts)<10):
         n_posts = len(posts)
     # Extracting Comments
-    j=1
-    for i in range(n_posts):
-        #x=1
-        posts[i].comments.replace_more(limit=0)
-        cmnt_lst = posts[i].comments.list();
+    for x in range(n_posts):
+        j=1
+        post_document = {}
+        post_document["title"]=posts[x].title
+        posts[x].comments.replace_more(limit=0)
+        cmnt_lst = posts[x].comments.list();
         print(cmnt_lst)
         for comment in cmnt_lst:
             key = "cmnt"+str(j)
-            document[key]=str(comment.body)
+            post_document[key]=str(comment.body)
             j+=1
+        post_key = "post"+str(x)
+        leader_document[post_key]=post_document
     # Connection to MongoDB
     client = MongoClient("mongodb+srv://l3admin:JZlYHY7fumfjrjQg@l3dataset.v5xlc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = client.test
     db = client['L3Dataset']
     coll = db['Leaders']
     # Adding document to collection
-    coll.insert_one(document)
+    coll.insert_one(leader_document)
