@@ -1,16 +1,43 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <title>LLL</title>
-    <link rel="icon" href="LLL_Title.png" type="image/icon type">
+    <link rel="icon" href="{% static '/LLL_Title.png' %}" type="image/icon type">
 </head>
 <body>
+  <style>
+    svg path {
+    fill: #00394f;
+    stroke: #eee;
+    stroke-width: .25;
+}
+svg path:hover {
+    fill: #006284;
+    transition: 0.6s;
+    cursor: pointer;
+}
+#mapwidth {
+    background-color: #01171b;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+.color {
+    background-color: #32a5cb;
+}
+  </style>
   
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light color py-3">
